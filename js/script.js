@@ -8,7 +8,7 @@ class Todo {
         this.todoCompleted = document.querySelector(todoCompleted);
         this.todoContainer = document.querySelector(todoContainer);
         this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
-        let isFocus = false;
+
     }
 
     addToStorage() {
@@ -76,8 +76,8 @@ class Todo {
         const ulTop = li.parentNode.getBoundingClientRect().top;
         const liTop = li.getBoundingClientRect().top;
         const ulBtm = li.parentNode.getBoundingClientRect().bottom;
-        let marginBottom = isDel ? window.innerHeight - liTop : ulBtm - liTop;
-        let marginTop = liTop - ulTop;
+        const marginBottom = isDel ? window.innerHeight - liTop : ulBtm - liTop;
+        const marginTop = liTop - ulTop;
 
         const fallDown = () => {
             step += isDel ? 30 : 10;
@@ -120,7 +120,7 @@ class Todo {
     }
 
     deleteItem(liDel) {
-        for (let item of this.todoData) {
+        for (const item of this.todoData) {
             if (item[0] === liDel.key) {
                 this.todoData.delete(item[0]);
                 break;
@@ -132,7 +132,7 @@ class Todo {
 
 
     completed(liComp) {
-        for (let item of this.todoData) {
+        for (const item of this.todoData) {
             if (item[0] === liComp.key) {
                 item[1].completed = !item[1].completed;
                 break;
@@ -155,7 +155,7 @@ class Todo {
         todoText.setAttribute('contenteditable', 'true');
         todoText.focus();
 
-        todoText.addEventListener('keydown', (e) => {
+        todoText.addEventListener('keydown', e => {
             if (e.keyCode === 13) {
                 e.preventDefault();
                 todoText.setAttribute('contenteditable', 'false');
@@ -168,7 +168,7 @@ class Todo {
                 this.render();
                 return;
             }
-            for (let item of this.todoData) {
+            for (const item of this.todoData) {
                 if (item[0] === li.key) {
                     item[1].value = todoText.textContent;
                     break;
