@@ -57,6 +57,7 @@ class Todo {
                 completed: false,
                 key: this.generateKey(),
             };
+            this.input.value = "";
             this.todoData.set(newTodo.key, newTodo);
             this.render();
         } else {
@@ -81,7 +82,6 @@ class Todo {
 
         const fallDown = () => {
             step += isDel ? 30 : 10;
-            console.log(step);
             li.style.top = step + 'px';
             if (step > marginBottom) {
                 cancelAnimationFrame(idFrame1);
